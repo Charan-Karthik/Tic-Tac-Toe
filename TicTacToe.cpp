@@ -23,7 +23,7 @@ bool CheckForWinner(const char board[ROWS][COLUMNS]);
 bool CheckForTie(const char board[ROWS][COLUMNS]);
 void HumanTurn(char board[ROWS][COLUMNS]);
 void ComputerTurn(char board[ROWS][COLUMNS]);
-int minimax(char board[ROWS][COLUMNS], bool maximizing);
+int Minimax(char board[ROWS][COLUMNS], bool maximizing);
 void HardComputerTurn(char board[ROWS][COLUMNS]);
 int SelectDifficulty();
 
@@ -234,7 +234,7 @@ void ComputerTurn(char board[ROWS][COLUMNS]) {
 }
 
 // Minimax algorithm to evaluate the best move
-int minimax(char board[ROWS][COLUMNS], bool maximizing) {
+int Minimax(char board[ROWS][COLUMNS], bool maximizing) {
   // Base cases
   if (CheckForWinner(board)) {
     return maximizing ? -10 : 10;
@@ -251,7 +251,7 @@ int minimax(char board[ROWS][COLUMNS], bool maximizing) {
       if (board[i][j] == EMPTY) {
         board[i][j] = maximizing ? COMPUTER : HUMAN; // temp marker placed
         // Recursively evaluate each possibility
-        int score = minimax(board, !maximizing);
+        int score = Minimax(board, !maximizing);
         board[i][j] = EMPTY; // temp marker removed
         bestScore = maximizing ? max(score, bestScore) : min(score, bestScore);
       }
@@ -271,7 +271,7 @@ void HardComputerTurn(char board[ROWS][COLUMNS]) {
     for (int j = 0; j < COLUMNS; ++j) {
       if (board[i][j] == EMPTY) {
         board[i][j] = COMPUTER;            // temp Computer marker placed
-        int score = minimax(board, false); // evaluate Computer move
+        int score = Minimax(board, false); // evaluate Computer move
         board[i][j] = EMPTY;               // temp Computer marker removed
         if (score > bestScore) {
           // update best score and best move
