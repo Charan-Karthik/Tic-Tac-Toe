@@ -233,7 +233,7 @@ void ComputerTurn(char board[ROWS][COLUMNS]) {
   board[x][y] = COMPUTER;
 }
 
-// Minimax function to evaluate the best move
+// Minimax algorithm to evaluate the best move
 int minimax(char board[ROWS][COLUMNS], bool maximizing) {
   // Base cases
   if (CheckForWinner(board)) {
