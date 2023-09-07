@@ -271,6 +271,8 @@ void HardComputerTurn(char board[ROWS][COLUMNS]) {
     for (int j = 0; j < COLUMNS; ++j) {
       if (board[i][j] == EMPTY) {
         board[i][j] = COMPUTER;            // temp Computer marker placed
+        // maximizing is set to false because the Computer just made its move
+        // and now it needs to evaluate the Human's potential moves
         int score = Minimax(board, false); // evaluate Computer move
         board[i][j] = EMPTY;               // temp Computer marker removed
         if (score > bestScore) {
